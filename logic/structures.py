@@ -4,7 +4,7 @@ class Moeda:
   def __init__(self, nome: str, sigla: str):
     self.nome = nome
     self.sigla = sigla
-    self.definir_salarios_minimos(pd.read_excel("Tratado.xlsx"))
+    self.definir_salarios_minimos(pd.read_excel("./tables/Tratado.xlsx"))
     self.ano_inicial = list(self.salarios_minimos.index.values)[0][-2:]
     self.ano_final = list(self.salarios_minimos.index.values)[-1][-2:]
 
@@ -21,11 +21,3 @@ class Moeda:
     fonte_de_dados = fonte_de_dados.set_index("LEGISLAÇÃO")
     self.salarios_minimos = fonte_de_dados.loc[lambda df: df[ "MOEDA"] == self.sigla,:]
 
-moedas = {
-  "Cruzeiro" : Moeda("Cruzeiro", "Cr$"),
-  "Cruzeiro Novo" : Moeda("Novo Cruzeiro", "NCr$"),
-  "Cruzado" : Moeda("Cruzado", "Cz$"),
-  "Cruzado Novo" : Moeda("Novo Cruzado", "NCz$"),
-  "Cruzeiro Real" : Moeda("Cruzeiro Real", "CR$"),
-  "Real" : Moeda("Real", "R$"),
-}

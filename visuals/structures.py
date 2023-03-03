@@ -1,20 +1,5 @@
-import pandas as pd
-from dash import html, dcc, Dash
-from moedas import moedas, Moeda
-
-my_css = [
-    {
-    "href": "./assets/style.css",
-    "rel": "stylesheets",
-    "type": "text/css",
-    }
-]
-
-app = Dash(__name__, external_stylesheets=my_css)
-
-
-    
-
+from dash import html, dcc
+from logic.structures import Moeda
 
 
 class Pagina_do_Dashboard(html.Div):
@@ -27,19 +12,9 @@ class Opção_de_Moeda(html.Li):
     def __init__(self, pagina_associada: Pagina_do_Dashboard):
         self.pagina_associada = pagina_associada
         self.moeda_associada = pagina_associada.moeda_referente
-        self.link_da_pagina = html.A(children=self.moeda_associada.nome, href=)
+        self.link_da_pagina = html.A(children=self.moeda_associada.nome)
         super().__init__(children=, className="botão_moeda")
 
 class SideBar(html.Ul):
     def __init__(self, children=None):
         super().__init__(children)
-
-app.layout = html.Div(
-    children=[
-        html.H1(children="Evolução das Moedas"),
-        
-    ]
-    )
-
-if __name__ == "__main__":
-    app.run_server(debug=True)
