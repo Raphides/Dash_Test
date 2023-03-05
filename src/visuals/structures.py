@@ -13,7 +13,7 @@ class Opção_de_Moeda(html.Li):
         self.pagina_associada = pagina_associada
         self.moeda_associada = pagina_associada.moeda_referente
         self.link_da_pagina = html.A(children=self.moeda_associada.nome)
-        super().__init__(children=, className="botão_moeda")
+        super().__init__(children="", className="botão_moeda")
 
 class SideBar(html.Ul):
     def __init__(self, children=None):
