@@ -1,22 +1,22 @@
 import pandas as pd
 
-class Moeda:
-  def __init__(self, nome: str, sigla: str):
-    self.nome = nome
-    self.sigla = sigla
-    self.definir_salarios_minimos(pd.read_excel("./src/logic/tables/Tratado.xlsx"))
-    self.ano_inicial = list(self.salarios_minimos.index.values)[0][-2:]
-    self.ano_final = list(self.salarios_minimos.index.values)[-1][-2:]
+class Coin:
+  def __init__(self, name: str, acronym: str):
+    self.name = name
+    self.acronym = acronym
+    self.set_minimum_wage(pd.read_excel("./src/logic/tables/Tratado.xlsx"))
+    self.start_year = list(self.minimum_wages.index.values)[0][-2:]
+    self.final_year = list(self.minimum_wages.index.values)[-1][-2:]
 
-    if int(self.ano_inicial) > 30:
-      self.ano_inicial = "19" + self.ano_inicial
+    if int(self.start_year) > 30:
+      self.start_year = "19" + self.start_year
     else:
-      self.ano_inicial = "20" + self.ano_inicial
-    if int(self.ano_final) > 30:
-      self.ano_final = "19" + self.ano_final
+      self.start_year = "20" + self.start_year
+    if int(self.final_year) > 30:
+      self.final_year = "19" + self.final_year
     else:
-      self.ano_final = "20" + self.ano_final
+      self.final_year = "20" + self.final_year
 
-  def definir_salarios_minimos(self, fonte_de_dados: pd.DataFrame):
-    fonte_de_dados = fonte_de_dados.set_index("LEGISLAÇÃO")
-    self.salarios_minimos = fonte_de_dados.loc[lambda df: df[ "MOEDA"] == self.sigla,:]
+  def set_minimum_wage(self, data_source: pd.DataFrame):
+    data_source = data_source.set_index("LEGISLAÇÃO")
+    self.minimum_wages = data_source.loc[lambda df: df[ "MOEDA"] == self.acronym,:]
